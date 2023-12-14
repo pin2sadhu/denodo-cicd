@@ -1,0 +1,29 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JDBC ds_sql_server
+    FOLDER = '/datasource'
+    DRIVERCLASSNAME = 'com.microsoft.sqlserver.jdbc.SQLServerDriver'
+    DATABASEURI = '${databases.project1.folder.datasource.datasources.jdbc.ds_sql_server.DATABASEURI}'
+    USERNAME = '${databases.project1.folder.datasource.datasources.jdbc.ds_sql_server.USERNAME}'
+    USERPASSWORD = '${databases.project1.folder.datasource.datasources.jdbc.ds_sql_server.USERPASSWORD}' ${databases.project1.folder.datasource.datasources.jdbc.ds_sql_server.USERPASSWORD.ENCRYPTED}
+    CLASSPATH = 'mssql-jdbc-10.x'
+    DATABASENAME = 'sqlserver'
+    DATABASEVERSION = '2017'
+    FETCHSIZE = 1000
+    VALIDATIONQUERY = 'Select 1'
+    INITIALSIZE = 4
+    MAXIDLE = -1
+    MINIDLE = 0
+    MAXACTIVE = 20
+    EXHAUSTEDACTION = 1
+    TESTONBORROW = true
+    TESTONRETURN = false
+    TESTWHILEIDLE = false
+    TIMEBETWEENEVICTION = -1
+    NUMTESTPEREVICTION = 3
+    MINEVICTABLETIME = 1800000
+    POOLPREPAREDSTATEMENTS = false
+    MAXOPENPREPAREDSTATEMENTS = -1
+    DATA_LOAD_CONFIGURATION (
+        BATCHINSERTSIZE = 1000
+    );
+
