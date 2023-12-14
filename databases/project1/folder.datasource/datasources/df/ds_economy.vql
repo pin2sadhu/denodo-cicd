@@ -1,0 +1,8 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF ds_economy
+    FOLDER = '/datasource'
+    ROUTE LOCAL 'LocalConnection' '${databases.project1.folder.datasource.datasources.df.ds_economy.ROUTE.LOCAL.PATH}'
+    COLUMNDELIMITER = ','
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = TRUE;
+

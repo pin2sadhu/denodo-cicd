@@ -1,0 +1,44 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_productmodel
+    FOLDER = '/baseview'
+    DATASOURCENAME=ds_sql_server
+    CATALOGNAME='${databases.project1.folder.baseview.views.jdbc.bv_productmodel.CATALOGNAME}' ESCAPE
+    SCHEMANAME='${databases.project1.folder.baseview.views.jdbc.bv_productmodel.SCHEMANAME}' 
+    RELATIONNAME='ProductModel' 
+    OUTPUTSCHEMA (
+        productmodelid = 'ProductModelID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int identity')  NOT NULL SORTABLE IS_AUTOINCREMENT,
+        name = 'Name' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='-9', sourcetypename='Name')  NOT NULL NOT SORTABLE,
+        catalogdescription = 'CatalogDescription' :'java.lang.String' (OPT) (sourcetypesize='2147483647', sourcetypeid='-16', sourcetypename='xml')  SORTABLE,
+        rowguid = 'rowguid' :'java.lang.String' (OPT) (sourcetypesize='36', sourcetypeid='1', sourcetypename='uniqueidentifier')  NOT NULL NOT SORTABLE,
+        modifieddate = 'ModifiedDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  NOT NULL SORTABLE
+    )
+    CONSTRAINT 'PK_ProductModel_ProductModelID' PRIMARY KEY ( 'ProductModelID' )
+    INDEX 'PK_ProductModel_ProductModelID' CLUSTER UNIQUE PRIMARY ( 'ProductModelID' )
+    INDEX 'AK_ProductModel_Name' OTHER UNIQUE ( 'Name' )
+    INDEX 'AK_ProductModel_rowguid' OTHER UNIQUE ( 'rowguid' );
+
+CREATE OR REPLACE TABLE bv_productmodel I18N us_pst (
+        productmodelid:int (notnull, autoincrement, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        name:text (notnull, sourcetypeid = '-9', sourcetypesize = '50'),
+        catalogdescription:text (sourcetypeid = '2005', sourcetypesize = '2147483647'),
+        rowguid:text (notnull, sourcetypeid = '1', sourcetypesize = '36'),
+        modifieddate:timestamp (notnull, sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23')
+    )
+    FOLDER = '/baseview'
+    CONSTRAINT 'PK_ProductModel_ProductModelID' PRIMARY KEY ( 'productmodelid' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_productmodel(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD productmodelid (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD catalogdescription (any) OPT ANY
+             ADD rowguid (any) OPT ANY
+             ADD modifieddate (any) OPT ANY
+        )
+        OUTPUTLIST (catalogdescription, modifieddate, name, productmodelid, rowguid
+        )
+        WRAPPER (jdbc bv_productmodel)
+    );
+
