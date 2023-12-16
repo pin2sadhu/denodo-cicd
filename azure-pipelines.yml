@@ -28,3 +28,37 @@ pool: Denodo_cicd_agent_pool
 name: 'Denodo_cicd_agent'
 
 steps:
+
+script: |
+REM Create VQL file with DVCSPULL command
+echo DVCSPULL project1; > $(pipelineTmpPath)/$(vqlFileName)
+displayName: 'Create DVCSPULL VQL File'
+
+- script: |
+
+REM Use import script to execute PULL
+
+$(denodoPath)/import.bat --singleuser --file "$
+(pipelineTmpPath)/$(vqlFileName)" --server $(server)?admin@$
+(PASSWORD)
+
+displayName: 'Pull changes to master VDP'
+
+- script: |
+
+REM locate in Denodo folder
+
+cd $(denodoPath)
+
+REM execute export script
+
+export.bat -l admin -p $(PASSWORD) -h $(server) -f $
+(pipelineTmpPath)/$(REVISION_NAME) -P includejars=yes -P
+includescanners=yes -P includeCustomComponents=yes -P
+replaceExistingElements=yes
+
+displayName: 'Exportar VDP de dev1 a VQL'
+
+env:
+PASSWORD: $(PASSWORD)
+REVISION: $(REVISION_NAME)
