@@ -6,7 +6,7 @@
 trigger:
 - main
 
-pool:
+pool: denodo_cicd_agent_pool
 
 name: denodo_cicd
 
