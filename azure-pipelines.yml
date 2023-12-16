@@ -6,16 +6,25 @@
 trigger:
 - main
 
-pool: denodo_cicd_agent_pool
+variables:
 
-name: denodo_cicd
+denodoPath: 'C:/Denodo/DenodoPlatform8.0/bin'
+
+testingToolPath: 'C:/Denodo/denodo-testing-tool-8.0-20230425'
+
+pipelineTmpPath: 'C:/Denodo/DenodoPlatform8.0/pipeline_files'
+
+server: 'localhost:9999/project1'
+
+vqlFileName: 'vcscommand.vql'
+
+testingToolConfig: 'configuration.properties'
+
+testingToolTest: 'test1.denodotest'
+
+jobs:
+- job: AgentJob
+pool: Denodo_cicd_agent_pool
+name: 'Denodo_cicd_agent'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
