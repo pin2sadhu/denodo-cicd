@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-name: denodo_cicd_agent
+name: denodo_cicd_agent_pool
 
 steps:
 - script: echo Hello, world!
