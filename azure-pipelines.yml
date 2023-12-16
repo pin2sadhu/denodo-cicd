@@ -62,3 +62,28 @@ displayName: 'Exportar VDP de dev1 a VQL'
 env:
 PASSWORD: $(PASSWORD)
 REVISION: $(REVISION_NAME)
+
+- task: PublishBuildArtifacts@1
+
+inputs:
+
+PathtoPublish: '$(pipelineTmpPath)/$(REVISION_NAME)'
+
+ArtifactName: 'VQL for Revision'
+
+publishLocation: 'Container'
+
+
+
+- script: |
+
+REM Convert vql file of db to base64 and use Rest Api to
+create revision
+
+cd $(pipelineTmpPath)
+
+python3 base64revision.py -s localhost -p 10090 -v $
+(REVISION_NAME) -n revision_test -d rev_desc_test -e 7 -c
+deploy_test -u $(USERNAME) -a $(PASSWORD)
+displayName: 'Create revision with Denodo Rest Api '
+
