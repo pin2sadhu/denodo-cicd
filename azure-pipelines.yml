@@ -29,6 +29,7 @@ name: 'Denodo_cicd_agent'
 
 steps:
 
-- script: echo Hello, world!
-- script: echo %denodoPath%
-- script: echo %vqlFileName%
+
+- script: 
+echo DVCSPULL project2; > %pipelineTmpPath%\%vqlFileName%
+displayName: 'Create DVCSPULL VQL File'
