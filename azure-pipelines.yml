@@ -27,12 +27,8 @@ variables:
 pool: Denodo_cicd_agent_pool
 name: 'Denodo_cicd_agent'
 
-
 steps:
 
-- script: 
-REM Create VQL file with DVCSPULL command
-echo %vqlFileName%
-
-echo DVCSPULL project2; > $(pipelineTmpPath)\$(vqlFileName)
-displayName:'Create DVCSPULL VQL File'
+- script: echo Hello, world!
+- script: echo %denodoPath%
+- script: echo %vqlFileName%
