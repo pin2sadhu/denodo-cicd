@@ -9,11 +9,10 @@ variables:
 
  - name: denodoPath
    value: C:\Denodo\DenodoPlatform8.0\bin   
-   - name: pipelineTmpPath
-   value: C:\Denodo\DenodoPlatform8.0\pipeline_files
+   - name: pipelineTmpPath   value: C:\Denodo\DenodoPlatform8.0\pipeline_files
    - name: server   value: localhost:9999/project1
-- name: vqlFileName
-value: vcscommand.vql
+   - name: vqlFileName
+   value: vcscommand.vql
 
 - name: testingToolConfig
 value: configuration.properties
