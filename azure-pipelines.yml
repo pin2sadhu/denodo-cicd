@@ -7,4 +7,4 @@ trigger:
 - azurepipeline_cicd # This indicates that the pipeline will fire automatically when there are changes to the main branch.
 
 
-echo $(PASSWORD)
+echo ${PASSWORD}
