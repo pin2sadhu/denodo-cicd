@@ -20,6 +20,7 @@ variables:
   value: 'test1.denodotest' # value of the variable
 - name: pipelineTmpPath  # name of a variable
   value: 'C:\Denodo\DenodoPlatform8.0\pipeline_files' # value of the variable
+  denodoPath: 'C:\Denodo\DenodoPlatform8.0\bin'
 
 
 jobs:
