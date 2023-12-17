@@ -15,6 +15,6 @@ jobs:
 pool: Denodo_cicd_agent_pool
 name: 'Denodo_cicd_agent'
 steps:
-- script: |
+- script:
 REM Create VQL file with DVCSPULL command
 echo $(denodoPath)
