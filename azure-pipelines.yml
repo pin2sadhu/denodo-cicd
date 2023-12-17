@@ -8,7 +8,7 @@ trigger:
 variables:
 
  denodoPath: 'C:\Denodo\DenodoPlatform8.0\bin' 
-pipelineTmpPath: 'C:\Denodo\DenodoPlatform8.0\pipeline_files\'
+pipelineTmpPath: 'C:\Denodo\DenodoPlatform8.0\pipeline_files'
    - name: server   value: 'localhost:9999/project2'
    - name: vqlFileName
    value: 'vcscommand.vql'
