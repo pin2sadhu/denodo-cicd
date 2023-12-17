@@ -18,8 +18,6 @@ stages:
   jobs:
   - job: AgentJob
   pool: Denodo_cicd_agent_pool
-  name: 'Denodo_cicd_agent'
-    variables:  # job-level
-      JOB_VAR: 'a job var'
+  name: 'Denodo_cicd_agent' 
     steps:
     - script: echo $(MY_VAR) $(STAGE_VAR) $(JOB_VAR)
