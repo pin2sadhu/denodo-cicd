@@ -11,6 +11,17 @@ variables:
 
 - name: denodoPath  # name of a variable
   value: 'C:\Denodo\DenodoPlatform8.0\bin' # value of the variable
+- name: server  # name of a variable
+  value: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2' # value of the variable
+- name: vqlFileName  # name of a variable
+  value: 'vcscommand.vql' # value of the variable
+- name: testingToolConfig  # name of a variable
+  value: 'configuration.properties' # value of the variable
+- name: testingToolTest  # name of a variable
+  value: 'test1.denodotest' # value of the variable
+- name: pipelineTmpPath  # name of a variable
+  value: 'C:\Denodo\DenodoPlatform8.0\pipeline_files' # value of the variable
+
 
 
 pool: Denodo_cicd_agent_pool
