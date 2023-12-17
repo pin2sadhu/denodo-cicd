@@ -4,7 +4,14 @@
 # https://aka.ms/yaml
 
 trigger:
-- azurepipeline_cicd # This indicates that the pipeline will fire automatically when there are changes to the main branch.
+
+- azurepipeline_cicd
 
 
-echo %PASSWORD%
+pool: Denodo_cicd_agent_pool
+name: 'Denodo_cicd_agent'
+
+steps:
+
+- script: echo Hello, world!
+- script: echo %PASSWORD%
