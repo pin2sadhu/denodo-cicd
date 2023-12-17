@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- main # This indicates that the pipeline will fire automatically when there are changes to the main branch.
+- azurepipeline_cicd # This indicates that the pipeline will fire automatically when there are changes to the main branch.
 variables:
 denodoPath: 'C:/Denodo/DenodoPlatform8.0/bin'
 testingToolPath: 'C:/Denodo/denodo-testing-tool-8.0-20230425'
