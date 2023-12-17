@@ -7,16 +7,12 @@ trigger:
 - azurepipeline_cicd # This indicates that the pipeline will fire automatically when there are changes to the main branch.
 variables:
 
- denodoPath: 'C:\Denodo\DenodoPlatform8.0\bin' 
-
-   - name: server   value: 'localhost:9999/project2'
-   - name: vqlFileName
-   value: 'vcscommand.vql'
-- name: testingToolConfig
-value: 'configuration.properties'
-
-- name: testingToolTest
-value: test1.denodotest
+denodoPath: 'C:\Denodo\DenodoPlatform8.0\bin' 
+server: 'localhost:9999/project2'
+vqlFileName: 'vcscommand.vql'
+testingToolConfig: 'configuration.properties'
+testingToolTest: test1.denodotest
+pipelineTmpPath: 'C:\Denodo\DenodoPlatform8.0\pipeline_files'
 
 jobs:
 - job: AgentJob
