@@ -6,23 +6,3 @@
 trigger:
 - main
 
-variables:
-
- - name: denodoPath
-   value: 'C:/Denodo/DenodoPlatform8.0/bin'
-
-- name: pipelineTmpPath
-value: 'C:/Denodo/DenodoPlatform8.0/pipeline_files'
-
-- name: server
-value: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project1'
-
-- name: vqlFileName
-value: 'vcscommand.vql'
-
-jobs:
-- job: AgentJob
-pool: Denodo_cicd_agent_pool
-name: 'Denodo_cicd_agent'
-
-steps:
