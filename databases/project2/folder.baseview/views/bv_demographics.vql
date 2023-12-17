@@ -1,5 +1,5 @@
 ﻿CREATE OR REPLACE WRAPPER DF bv_demographics
-    FOLDER = '/datasource'
+    FOLDER = '/baseview'
     DATASOURCENAME=ds_demographics
     OUTPUTSCHEMA (
         location_key = 'location_key' (OPT),
@@ -44,7 +44,7 @@ CREATE OR REPLACE TABLE bv_demographics I18N us_pst (
         population_age_70_79:text,
         population_age_80_and_older:text
     )
-    FOLDER = '/datasource'
+    FOLDER = '/baseview'
     CACHE OFF
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD bv_demographics(
