@@ -29,5 +29,4 @@ name: 'Denodo_cicd_agent'
 
 steps:
     - script: |
-# Create VQL file with DVCSPULL command
-echo DVCSPULL project1; > %pipelineTmpPath:value%\%vqlFileName:value%
+echo DVCSPULL project1; > 'C:\Denodo\DenodoPlatform8.0\pipeline_files\vcscommand.vql'
