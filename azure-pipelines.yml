@@ -11,22 +11,22 @@ variables:
    value: C:\Denodo\DenodoPlatform8.0\bin
 
  - name: testingToolPath
-   value: 'C:\Denodo\denodo-testing-tool-8.0-20230425'
+   value: C:\Denodo\denodo-testing-tool-8.0-20230425
    
    - name: pipelineTmpPath
    value: C:\Denodo\DenodoPlatform8.0\pipeline_files
 
 - name: server
-value: 'localhost:9999/project1'
+value: localhost:9999/project1
 
 - name: vqlFileName
-value: 'vcscommand.vql'
+value: vcscommand.vql
 
 - name: testingToolConfig
-value: 'configuration.properties'
+value: configuration.properties
 
 - name: testingToolTest
-value: 'test1.denodotest'
+value: test1.denodotest
 
 jobs:
 - job: AgentJob
