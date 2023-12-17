@@ -8,8 +8,7 @@ trigger:
 
 variables:
 
-- name: denodoPath  # name of a variable
-  value: 'C:\Denodo\DenodoPlatform8.0\bin' # value of the variable
+denodoPath:'C:\Denodo\DenodoPlatform8.0\bin'
 
 jobs:
 - job: AgentJob
