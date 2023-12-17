@@ -7,7 +7,7 @@ trigger:
 - azurepipeline_cicd # This indicates that the pipeline will fire automatically when there are changes to the main branch.
 variables:
 
--name denodoPath
+-name: denodoPath
 value: 'C:\Denodo\DenodoPlatform8.0\bin'
 server : 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2'
 vqlFileName: 'vcscommand.vql'
