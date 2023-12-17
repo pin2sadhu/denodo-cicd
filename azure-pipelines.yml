@@ -8,14 +8,23 @@ trigger:
 - main
 
 variables:
-denodoPath: 'C:/Denodo/DenodoPlatform8.0/bin'
-testingToolPath: 'C:/Denodo/denodo-testing-tool-8.0-20230425'
-pipelineTmpPath: 'C:/Denodo/DenodoPlatform8.0/pipeline_files'
-server: 'localhost:9999/project1'
-vqlFileName: 'vcscommand.vql'
-testingToolConfig: 'configuration.properties'
-testingToolTest: 'test1.denodotest'
 
+- name: denodoPath  # name of a variable
+  value: 'C:\Denodo\DenodoPlatform8.0\bin' # value of the variable
+- name: server  # name of a variable
+  value: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2' # value of the variable
+- name: vqlFileName  # name of a variable
+  value: 'vcscommand.vql' # value of the variable
+- name: testingToolConfig  # name of a variable
+  value: 'configuration.properties' # value of the variable
+- name: testingToolTest  # name of a variable
+  value: 'test1.denodotest' # value of the variable
+- name: pipelineTmpPath  # name of a variable
+  value: 'C:\Denodo\DenodoPlatform8.0\pipeline_files' # value of the variable
+
+
+jobs:
+- job: AgentJob
 pool: Denodo_cicd_agent_pool
 name: 'Denodo_cicd_agent'
 
