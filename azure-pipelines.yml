@@ -25,9 +25,6 @@ variables:
   vqlFileName: 'vcscommand.vql'
   pipelineTmpPath: 'C:\Denodo\DenodoPlatform8.0\pipeline_files'
 
-
-
-
 jobs:
 - job: AgentJob
 pool: Denodo_cicd_agent_pool
