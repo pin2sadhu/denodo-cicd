@@ -9,4 +9,6 @@ jobs:
 - job: AgentJob
 pool: Denodo_cicd_agent_pool
 name: 'Denodo_cicd_agent'
+Steps:
+- script: echo Hello, world!
 echo "this is the test job"
