@@ -5,19 +5,4 @@
 
 trigger:
 - main
-
-variables:      # pipeline-level
-  MY_VAR: 'my value'
-  ANOTHER_VAR: 'another value'
-
-stages:
-- stage: Build
-  variables:    # stage-level
-    STAGE_VAR: 'that happened'
-
-  jobs:
-  - job: AgentJob
-  pool: Denodo_cicd_agent_pool
-  name: 'Denodo_cicd_agent' 
-    steps:
-    - script: echo $(MY_VAR) $(STAGE_VAR) $(JOB_VAR)
+echo "this is the test job"
