@@ -9,7 +9,7 @@ variables:
 denodoPath: 'C:/Denodo/DenodoPlatform8.0/bin'
 testingToolPath: 'C:/Denodo/denodo-testing-tool-8.0-20230425'
 pipelineTmpPath: 'C:/Denodo/DenodoPlatform8.0/pipeline_files'
-server: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project1'
+server: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2'
 vqlFileName: 'vcscommand.vql'
 testingToolConfig: 'configuration.properties'
 testingToolTest: 'test1.denodotest'
@@ -22,7 +22,7 @@ steps:
 
 script: |
 REM Create VQL file with DVCSPULL command
-echo DVCSPULL project1; > $(pipelineTmpPath)/$(vqlFileName)
+echo DVCSPULL project2; > $(pipelineTmpPath)/$(vqlFileName)
 displayName: 'Create DVCSPULL VQL File'
 
 - script: |
