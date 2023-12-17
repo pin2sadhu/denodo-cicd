@@ -9,7 +9,8 @@ variables:
 
 - name: denodoPath
 value: 'C:\Denodo\DenodoPlatform8.0\bin'
-server : 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2'
+-name: server
+value: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2'
 vqlFileName: 'vcscommand.vql'
 testingToolConfig: 'configuration.properties'
 testingToolTest: test1.denodotest
