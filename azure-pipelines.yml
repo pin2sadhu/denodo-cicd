@@ -21,6 +21,11 @@ variables:
 - name: pipelineTmpPath  # name of a variable
   value: 'C:\Denodo\DenodoPlatform8.0\pipeline_files' # value of the variable
   denodoPath: 'C:\Denodo\DenodoPlatform8.0\bin'
+  server: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2'
+  vqlFileName: 'vcscommand.vql'
+  pipelineTmpPath: 'C:\Denodo\DenodoPlatform8.0\pipeline_files'
+
+
 
 
 jobs:
