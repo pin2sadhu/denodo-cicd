@@ -6,16 +6,5 @@
 trigger:
 - azurepipeline_cicd # This indicates that the pipeline will fire automatically when there are changes to the main branch.
 
-variables:
 
-denodoPath: "C:\\Denodo\\DenodoPlatform8.0\\bin"
-
-jobs:
-- job: AgentJob
-pool: Denodo_cicd_agent_pool
-name: 'Denodo_cicd_agent'
-steps:
-- script:
-- pwsh: |
-REM Create VQL file with DVCSPULL command
 echo $(PASSWORD)
