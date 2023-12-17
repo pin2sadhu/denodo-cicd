@@ -22,7 +22,7 @@ variables:
 - name: pipelineTmpPath  # name of a variable
   value: 'C:\Denodo\DenodoPlatform8.0\pipeline_files' # value of the variable
 
-
+pipelineTmpPath: 'C:\Denodo\DenodoPlatform8.0\pipeline_files'
 
 pool: Denodo_cicd_agent_pool
 name: 'Denodo_cicd_agent'
@@ -30,4 +30,4 @@ name: 'Denodo_cicd_agent'
 steps:
     - script: |
 # Create VQL file with DVCSPULL command
-echo DVCSPULL project1; > '%pipelineTmpPath:value%\%vqlFileName:value%''
+echo DVCSPULL project1; > %pipelineTmpPath:value%\%vqlFileName:value%
