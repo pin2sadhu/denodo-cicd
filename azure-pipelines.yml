@@ -7,6 +7,11 @@ trigger:
 
 - azurepipeline_cicd
 
+variables:
+
+- name: denodoPath  # name of a variable
+  value: 'C:\Denodo\DenodoPlatform8.0\bin' # value of the variable
+
 
 pool: Denodo_cicd_agent_pool
 name: 'Denodo_cicd_agent'
@@ -14,4 +19,4 @@ name: 'Denodo_cicd_agent'
 steps:
 
 - script: echo Hello, world!
-- script: echo %PASSWORD%
+- script: echo %denodoPath%
