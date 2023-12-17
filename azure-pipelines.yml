@@ -8,7 +8,7 @@ trigger:
 variables:
 
  - name: denodoPath
-   value: 'C:\Denodo\DenodoPlatform8.0\bin'
+   value: C:\Denodo\DenodoPlatform8.0\bin
 
  - name: testingToolPath
    value: 'C:\Denodo\denodo-testing-tool-8.0-20230425'
