@@ -18,4 +18,4 @@ name: 'Denodo_cicd_agent'
 steps:
 - script: |
 REM Create VQL file with DVCSPULL command
-echo $(vqlFileName)
+echo $(denodoPath)
