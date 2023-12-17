@@ -7,6 +7,14 @@ trigger:
 
 - main
 
+variables:
+denodoPath: 'C:/Denodo/DenodoPlatform8.0/bin'
+testingToolPath: 'C:/Denodo/denodo-testing-tool-8.0-20230425'
+pipelineTmpPath: 'C:/Denodo/DenodoPlatform8.0/pipeline_files'
+server: 'localhost:9999/project1'
+vqlFileName: 'vcscommand.vql'
+testingToolConfig: 'configuration.properties'
+testingToolTest: 'test1.denodotest'
 
 pool: Denodo_cicd_agent_pool
 name: 'Denodo_cicd_agent'
