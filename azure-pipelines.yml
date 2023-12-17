@@ -14,7 +14,6 @@ variables:
    - name: server   value: 'localhost:9999/project2'
    - name: vqlFileName
    value: 'vcscommand.vql'
-   
 - name: testingToolConfig
 value: 'configuration.properties'
 
