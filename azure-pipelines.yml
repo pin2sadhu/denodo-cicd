@@ -7,7 +7,7 @@ trigger:
 - azurepipeline_cicd # This indicates that the pipeline will fire automatically when there are changes to the main branch.
 variables:
 
-denodoPath1: 'ABC'
+
 - name: denodoPath  # name of a variable
   value: 'C:\Denodo\DenodoPlatform8.0\bin' # value of the variable
 - name: server  # name of a variable
@@ -31,7 +31,7 @@ steps:
 
 - script: |
 REM Create VQL file with DVCSPULL command
-echo '$(variables.pipelineTmpPath.value)'
+echo '$(pipelineTmpPath.value)'
 
 echo DVCSPULL project2; > $(pipelineTmpPath)\$(vqlFileName)
 displayName: 'Create DVCSPULL VQL File'
