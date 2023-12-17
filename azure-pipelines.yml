@@ -4,13 +4,12 @@
 # https://aka.ms/yaml
 
 trigger:
-- main # This indicates that the pipeline will fire automatically
-when there are changes to the main branch.
+- main # This indicates that the pipeline will fire automatically when there are changes to the main branch.
 variables:
 denodoPath: 'C:/Denodo/DenodoPlatform8.0/bin'
 testingToolPath: 'C:/Denodo/denodo-testing-tool-8.0-20230425'
 pipelineTmpPath: 'C:/Denodo/DenodoPlatform8.0/pipeline_files'
-server: 'localhost:9999/project1'
+server: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project1'
 vqlFileName: 'vcscommand.vql'
 testingToolConfig: 'configuration.properties'
 testingToolTest: 'test1.denodotest'
@@ -54,15 +53,9 @@ inputs:
 PathtoPublish: '$(pipelineTmpPath)/$(REVISION_NAME)'
 ArtifactName: 'VQL for Revision'
 publishLocation: 'Container'
-- task: PublishBuildArtifacts@1
-inputs:
-PathtoPublish: '$
-(testingToolPath)/src/test/resources/CSVReporter.csv'
-ArtifactName: 'Testing Tool CSV gerenated file'
-publishLocation: 'Container'
+
 - script: |
-REM Convert vql file of db to base64 and use Rest Api to
-create revision
+REM Convert vql file of db to base64 and use Rest Api to create revision
 cd $(pipelineTmpPath)
 python3 base64revision.py -s localhost -p 10090 -v $
 (REVISION_NAME) -n revision_test -d rev_desc_test -e 7 -c
@@ -70,8 +63,7 @@ deploy_test -u $(USERNAME) -a $(PASSWORD)
 displayName: 'Create revision with Denodo Rest Api '
 
 - script: |
-REM Retry deletion of both temporary VQL file and
-REVISION_NAME file until they are deleted
+REM Retry deletion of both temporary VQL file and REVISION_NAME file until they are deleted
 :retryVql
 del "%pipelineTmpPath%\%vqlFileName%" 2> NUL
 if exist "%pipelineTmpPath%\%vqlFileName%" (
@@ -86,6 +78,5 @@ REM Wait for a second before retrying
 timeout /t 1 /nobreak > NUL
 goto retryRevision
 )
-displayName: 'Retry Delete Temporary Pull VQL and REVISION
-Files'
+displayName: 'Retry Delete Temporary Pull VQL and REVISION Files'
 
