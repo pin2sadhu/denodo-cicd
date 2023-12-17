@@ -8,15 +8,14 @@ trigger:
 variables:
 
  - name: denodoPath
-   value: "C:\Denodo\DenodoPlatform8.0\bin"  
+   value: 'C:\Denodo\DenodoPlatform8.0\bin' 
    - name: pipelineTmpPath   
-   value: "C:\Denodo\DenodoPlatform8.0\pipeline_files"
-   - name: server   value: localhost:9999/project1
+   value: 'C:\Denodo\DenodoPlatform8.0\pipeline_files'
+   - name: server   value: 'localhost:9999/project2'
    - name: vqlFileName
-   value: vcscommand.vql
-
+   value: 'vcscommand.vql'
 - name: testingToolConfig
-value: configuration.properties
+value: 'configuration.properties'
 
 - name: testingToolTest
 value: test1.denodotest
