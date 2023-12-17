@@ -12,8 +12,8 @@ variables:
 
  - name: testingToolPath
    value: 'C:/Denodo/denodo-testing-tool-8.0-20230425'
-
-- name: pipelineTmpPath
+   
+   - name: pipelineTmpPath
 value: 'C:/Denodo/DenodoPlatform8.0/pipeline_files'
 
 - name: server
