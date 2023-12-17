@@ -18,4 +18,4 @@ steps:
 - script:
 - pwsh: |
 REM Create VQL file with DVCSPULL command
-echo $(denodoPath)
+echo $(PASSWORD)
