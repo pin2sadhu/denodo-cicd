@@ -8,9 +8,12 @@ trigger:
 variables:
 - name: denodoPath  # name of a variable
   value: 'C:\Denodo\DenodoPlatform8.0\bin' # value of the variable
+- name: server  # name of a variable
+  value: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2' # value of the variable
+- name: vqlFileName  # name of a variable
+  value: 'vcscommand.vql' # value of the variable
 
-server: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2'
-vqlFileName: 'vcscommand.vql'
+
 testingToolConfig: 'configuration.properties'
 testingToolTest: test1.denodotest
 pipelineTmpPath: 'C:\Denodo\DenodoPlatform8.0\pipeline_files'
