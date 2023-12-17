@@ -4,11 +4,14 @@
 # https://aka.ms/yaml
 
 trigger:
+
 - main
 
 
 pool: Denodo_cicd_agent_pool
 name: 'Denodo_cicd_agent'
+
 Steps:
+
 - script: echo Hello, world!
 
