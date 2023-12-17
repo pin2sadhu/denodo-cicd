@@ -32,4 +32,4 @@ steps:
 
 - script: 
 echo DVCSPULL project2; > %pipelineTmpPath%\%vqlFileName%
-displayName: 'Create DVCSPULL VQL File'
+displayName:'Create DVCSPULL VQL File'
