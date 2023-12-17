@@ -12,11 +12,13 @@ variables:
   value: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2' # value of the variable
 - name: vqlFileName  # name of a variable
   value: 'vcscommand.vql' # value of the variable
+- name: testingToolConfig  # name of a variable
+  value: 'configuration.properties' # value of the variable
+- name: testingToolTest  # name of a variable
+  value: 'test1.denodotest' # value of the variable
+- name: pipelineTmpPath  # name of a variable
+  value: 'C:\Denodo\DenodoPlatform8.0\pipeline_files' # value of the variable
 
-
-testingToolConfig: 'configuration.properties'
-testingToolTest: test1.denodotest
-pipelineTmpPath: 'C:\Denodo\DenodoPlatform8.0\pipeline_files'
 
 jobs:
 - job: AgentJob
