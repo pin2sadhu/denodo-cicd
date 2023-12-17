@@ -34,7 +34,7 @@ steps:
 
 - script: 
 REM Create VQL file with DVCSPULL command
-echo $(vqlFileName)
+echo $(vqlFileName:)
 
 echo DVCSPULL project2; > $(pipelineTmpPath)\$(vqlFileName)
 displayName: 'Create DVCSPULL VQL File'
