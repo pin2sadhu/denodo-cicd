@@ -62,8 +62,7 @@ jobs:
 )
         :retryRevision
             del "%pipelineTmpPath%\%REVISION_NAME%" 2> NUL
-            if exist "%pipelineTmpPath%\%REVISION_NAME%" (
-            # Wait for a second before retrying
+            if exist "%pipelineTmpPath%\%REVISION_NAME%" (# Wait for a second before retrying
             timeout /t 1 /nobreak > NUL
             goto retryRevision
 )
