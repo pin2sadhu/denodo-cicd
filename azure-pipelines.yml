@@ -4,29 +4,68 @@
 # https://aka.ms/yaml
 
 trigger:
-
-- azurepipeline_cicd
-
+    - azurepipeline_cicd
 variables:
+    denodoPath: 'C:\Denodo\DenodoPlatform8.0\bin'
+    server: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2'
+    vqlFileName: 'vcscommand.vql'
+    testingToolConfig: 'configuration.properties'
+    testingToolTest: 'test1.denodotest'
+    pipelineTmpPath: 'C:\Denodo\DenodoPlatform8.0\pipeline_files'
+    pool: Denodo_cicd_agent_pool
+    name: 'Denodo_cicd_agent'
+jobs:
+    - job: AgentJob
+    pool: Denodo_cicd_agent_pool
+    name: 'Denodo_cicd_agent'
 
-- name: denodoPath  # name of a variable
-  value: 'C:\Denodo\DenodoPlatform8.0\bin' # value of the variable
-- name: server  # name of a variable
-  value: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2' # value of the variable
-- name: vqlFileName  # name of a variable
-  value: 'vcscommand.vql' # value of the variable
-- name: testingToolConfig  # name of a variable
-  value: 'configuration.properties' # value of the variable
-- name: testingToolTest  # name of a variable
-  value: 'test1.denodotest' # value of the variable
-- name: pipelineTmpPath  # name of a variable
-  value: 'C:\Denodo\DenodoPlatform8.0\pipeline_files' # value of the variable
-
-pipelineTmpPath: 'C:\Denodo\DenodoPlatform8.0\pipeline_files'
-
-pool: Denodo_cicd_agent_pool
-name: 'Denodo_cicd_agent'
-
-steps:
+    steps:
     - script: |
-echo DVCSPULL project1; > 'C:\Denodo\DenodoPlatform8.0\pipeline_files\vcscommand.vql'
+        # Create VQL file with DVCSPULL command
+        echo ${vqlFileName}
+        echo DVCSPULL project2; > $(pipelineTmpPath)\$(vqlFileName)
+        displayName: 'Create DVCSPULL VQL File'
+    - script: |
+        # Use import script to execute PULL
+        $(denodoPath)\import.bat --singleuser --file "$(pipelineTmpPath)\$(vqlFileName)" --server $(server)?admin@$(PASSWORD)
+    displayName: 'Pull changes to master VDP'
+
+    - script: |
+        # locate in Denodo folder
+        cd $(denodoPath)
+        # execute export script
+        export.bat -l admin -p $(PASSWORD) -h $(server) -f $(pipelineTmpPath)\$(REVISION_NAME) -P includejars=yes -P
+        includescanners=yes -P includeCustomComponents=yes -P replaceExistingElements=yes -P includeCreateDatabase=yes
+    displayName: 'Export VDP from dev1 to VQL'
+    env:
+        PASSWORD: $(PASSWORD)
+        REVISION: $(REVISION_NAME)
+    - task: PublishBuildArtifacts@1
+    inputs:
+        PathtoPublish: '$(pipelineTmpPath)\$(REVISION_NAME)'
+        ArtifactName: 'VQL for Revision'
+        publishLocation: 'Container'
+
+    - script: |
+        # Convert vql file of db to base64 and use Rest Api to create revision
+        cd $(pipelineTmpPath)
+        python base64revision.py -s AZRCISVDWSOLM01 -p 10090 -v $(REVISION_NAME) -n revision_test_azure_devops -d rev_desc_test_azure_devops -e 55 -c deploy_test_azure_devops -u $(USERNAME) -a $(PASSWORD)
+    displayName: 'Create revision with Denodo Rest Api'
+    - script: |
+        # Retry deletion of both temporary VQL file and REVISION_NAME file until they are deleted
+        :retryVql
+        del "%pipelineTmpPath%\%vqlFileName%" 2> NUL
+        if exist "%pipelineTmpPath%\%vqlFileName%" (
+            # Wait for a second before retrying
+            timeout /t 1 /nobreak > NUL
+            goto retryVql
+)
+        :retryRevision
+            del "%pipelineTmpPath%\%REVISION_NAME%" 2> NUL
+            if exist "%pipelineTmpPath%\%REVISION_NAME%" (
+            # Wait for a second before retrying
+            timeout /t 1 /nobreak > NUL
+            goto retryRevision
+)
+    displayName: 'Retry Delete Temporary Pull VQL and REVISION Files'
+
