@@ -41,7 +41,7 @@ jobs:
         PASSWORD: $(PASSWORD)
         REVISION: $(REVISION_NAME)
     - task: PublishBuildArtifacts@1
-    inputs:
+      inputs:
         PathtoPublish: '$(pipelineTmpPath)\$(REVISION_NAME)'
         ArtifactName: 'VQL for Revision'
         publishLocation: 'Container'
