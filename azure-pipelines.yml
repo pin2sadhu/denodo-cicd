@@ -64,6 +64,6 @@ jobs:
             if exist "%pipelineTmpPath%\%REVISION_NAME%" (# Wait for a second before retrying
             timeout /t 1 /nobreak > NUL
             goto retryRevision
-)
-      displayName: 'Retry Delete Temporary Pull VQL and REVISION Files'
+            )
+            displayName: 'Retry Delete Temporary Pull VQL and REVISION Files'
 
