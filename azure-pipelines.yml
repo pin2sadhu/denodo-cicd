@@ -58,8 +58,7 @@ jobs:
         if exist "%pipelineTmpPath%\%vqlFileName%" (
             # Wait for a second before retrying
             timeout /t 1 /nobreak > NUL
-            goto retryVql
-)
+            goto retryVql)
         :retryRevision
             del "%pipelineTmpPath%\%REVISION_NAME%" 2> NUL
             if exist "%pipelineTmpPath%\%REVISION_NAME%" (# Wait for a second before retrying
