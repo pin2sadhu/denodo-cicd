@@ -8,7 +8,7 @@ trigger:
 variables:
     denodoPath: 'C:\Denodo\DenodoPlatform8.0\bin'
     server: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2'
-    testingToolPath: 'C:/Denodo/denodo-testing-tool-8.0-20230425'
+    testingToolPath: 'C:\Denodo\denodo-testing-tool-8.0-20230425'
     vqlFileName: 'vcscommand.vql'
     testingToolConfig: 'configuration.properties'
     testingToolTest: 'test1.denodotest'
@@ -31,9 +31,9 @@ jobs:
 
   - script: |
         REM Tests with Denodo Testing Tool
-        cd $(testingToolPath)/bin
+        cd $(testingToolPath)\bin
         REM execute Testing Tool
-        denodo-test.bat $(testingToolPath)/conf/$(testingToolConfig) $(testingToolPath)/conf/$(testingToolTest)
+        denodo-test.bat $(testingToolPath)\conf\$(testingToolConfig) $(testingToolPath)\conf\$(testingToolTest)
     displayName: 'Tests with Denodo Testing Tool'
 
   - script: |
@@ -53,7 +53,7 @@ jobs:
     
   - task: PublishBuildArtifacts@1
     inputs:
-        PathtoPublish: '$(testingToolPath)/src/test/resources/CSVReporter.csv'
+        PathtoPublish: '$(testingToolPath)\src\CSVReporter.csv'
         ArtifactName: 'Testing Tool CSV gerenated file'
         publishLocation: 'Container'
 
