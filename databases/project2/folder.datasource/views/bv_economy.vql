@@ -10,7 +10,7 @@
 
 CREATE OR REPLACE TABLE bv_economy I18N us_pst (
         location_key:text,
-        gdp_usd:text,
+        gdp_usd:decimal,
         gdp_per_capita_usd:text,
         human_capital_index:text
     )
