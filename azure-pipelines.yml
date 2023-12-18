@@ -27,7 +27,7 @@ jobs:
   - script: |
         # Use import script to execute PULL
         $(denodoPath)\import.bat --singleuser --file "$(pipelineTmpPath)\$(vqlFileName)" --server $(server)?admin@$(PASSWORD)
-      displayName: 'Pull changes to master VDP'
+    displayName: 'Pull changes to master VDP'
 
     - script: |
         # locate in Denodo folder
