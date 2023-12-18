@@ -1,8 +1,0 @@
-﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
-CREATE OR REPLACE DATASOURCE DF ds_demographics
-    FOLDER = '/datasource'
-    ROUTE LOCAL 'LocalConnection' '${databases.project2.folder.datasource.datasources.df.ds_demographics.ROUTE.LOCAL.PATH}'
-    COLUMNDELIMITER = ','
-    ENDOFLINEDELIMITER = '\n'
-    HEADER = TRUE;
-
