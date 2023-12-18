@@ -45,11 +45,11 @@ jobs:
         ArtifactName: 'VQL for Revision'
         publishLocation: 'Container'
 
-    - script: |
+  - script: |
         # Convert vql file of db to base64 and use Rest Api to create revision
         cd $(pipelineTmpPath)
         python base64revision.py -s AZRCISVDWSOLM01 -p 10090 -v $(REVISION_NAME) -n revision_test_azure_devops -d rev_desc_test_azure_devops -e 55 -c deploy_test_azure_devops -u $(USERNAME) -a $(PASSWORD)
-      displayName: 'Create revision with Denodo Rest Api'
+    displayName: 'Create revision with Denodo Rest Api'
     - script: |
         # Retry deletion of both temporary VQL file and REVISION_NAME file until they are deleted
         :retryVql
