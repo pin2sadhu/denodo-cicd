@@ -8,6 +8,7 @@ trigger:
 variables:
     denodoPath: 'C:\Denodo\DenodoPlatform8.0\bin'
     server: 'dnd-v-yisc003a.centralindia.cloudapp.azure.com:9999/project2'
+    testingToolPath: 'C:/Denodo/denodo-testing-tool-8.0-20230425'
     vqlFileName: 'vcscommand.vql'
     testingToolConfig: 'configuration.properties'
     testingToolTest: 'test1.denodotest'
