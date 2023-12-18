@@ -32,8 +32,7 @@ jobs:
         REM locate in Denodo folder
         cd $(denodoPath)
         REM execute export script
-        export.bat -l admin -p $(PASSWORD) -h $(server) -f $(pipelineTmpPath)\$(REVISION_NAME) -P includejars=yes -P
-        includescanners=yes -P includeCustomComponents=yes -P replaceExistingElements=yes -P includeCreateDatabase=yes
+        export.bat -l admin -p $(PASSWORD) -h $(server) -f $(pipelineTmpPath)\$(REVISION_NAME) -P includejars=yes -P includescanners=yes -P includeCustomComponents=yes -P replaceExistingElements=yes -P includeCreateDatabase=yes
     displayName: 'Export VDP from dev1 to VQL'
     env:
         PASSWORD: $(PASSWORD)
