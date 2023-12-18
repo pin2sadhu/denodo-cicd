@@ -62,5 +62,5 @@ jobs:
             timeout /t 1 /nobreak > NUL
             goto retryRevision
             )
-            displayName: 'Retry Delete Temporary Pull VQL and REVISION Files'
+    displayName: 'Retry Delete Temporary Pull VQL and REVISION Files'
 
