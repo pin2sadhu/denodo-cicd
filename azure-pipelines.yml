@@ -24,7 +24,7 @@ jobs:
         echo ${vqlFileName}
         echo DVCSPULL project2; > $(pipelineTmpPath)\$(vqlFileName)
     displayName: 'Create DVCSPULL VQL File'
- - script: |
+  - script: |
         # Use import script to execute PULL
         $(denodoPath)\import.bat --singleuser --file "$(pipelineTmpPath)\$(vqlFileName)" --server $(server)?admin@$(PASSWORD)
       displayName: 'Pull changes to master VDP'
