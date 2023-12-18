@@ -20,18 +20,18 @@ jobs:
   
   steps:
   - script: |
-        # Create VQL file with DVCSPULL command
+        REM Create VQL file with DVCSPULL command
         echo DVCSPULL project2; > $(pipelineTmpPath)\$(vqlFileName)
     displayName: 'Create DVCSPULL VQL File'
   - script: |
-        # Use import script to execute PULL
+        REM Use import script to execute PULL
         $(denodoPath)\import.bat --singleuser --file "$(pipelineTmpPath)\$(vqlFileName)" --server $(server)?admin@$(PASSWORD)
     displayName: 'Pull changes to master VDP'
 
   - script: |
-        # locate in Denodo folder
+        REM locate in Denodo folder
         cd $(denodoPath)
-        # execute export script
+        REM execute export script
         export.bat -l admin -p $(PASSWORD) -h $(server) -f $(pipelineTmpPath)\$(REVISION_NAME) -P includejars=yes -P
         includescanners=yes -P includeCustomComponents=yes -P replaceExistingElements=yes -P includeCreateDatabase=yes
     displayName: 'Export VDP from dev1 to VQL'
@@ -45,16 +45,16 @@ jobs:
         publishLocation: 'Container'
 
   - script: |
-        # Convert vql file of db to base64 and use Rest Api to create revision
+        REM Convert vql file of db to base64 and use Rest Api to create revision
         cd $(pipelineTmpPath)
         python base64revision.py -s AZRCISVDWSOLM01 -p 10090 -v $(REVISION_NAME) -n revision_test_azure_devops -d rev_desc_test_azure_devops -e 55 -c deploy_test_azure_devops -u $(USERNAME) -a $(PASSWORD)
     displayName: 'Create revision with Denodo Rest Api'
   - script: |
-        # Retry deletion of both temporary VQL file and REVISION_NAME file until they are deleted
+        REM Retry deletion of both temporary VQL file and REVISION_NAME file until they are deleted
         :retryVql
         del "%pipelineTmpPath%\%vqlFileName%" 2> NUL
         if exist "%pipelineTmpPath%\%vqlFileName%" (
-            # Wait for a second before retrying
+            REM Wait for a second before retrying
             timeout /t 1 /nobreak > NUL
             goto retryVql)
         :retryRevision
