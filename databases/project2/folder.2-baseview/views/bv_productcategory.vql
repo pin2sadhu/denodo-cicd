@@ -1,0 +1,46 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_productcategory
+    FOLDER = '/2-baseview'
+    DATASOURCENAME=ds_sql_server_azure
+    CATALOGNAME='${databases.project2.folder.2-baseview.views.jdbc.bv_productcategory.CATALOGNAME}' ESCAPE
+    SCHEMANAME='${databases.project2.folder.2-baseview.views.jdbc.bv_productcategory.SCHEMANAME}' 
+    RELATIONNAME='ProductCategory' 
+    OUTPUTSCHEMA (
+        productcategoryid = 'ProductCategoryID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int identity')  NOT NULL SORTABLE IS_AUTOINCREMENT,
+        parentproductcategoryid = 'ParentProductCategoryID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        name = 'Name' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='-9', sourcetypename='Name')  NOT NULL NOT SORTABLE,
+        rowguid = 'rowguid' :'java.lang.String' (OPT) (sourcetypesize='36', sourcetypeid='1', sourcetypename='uniqueidentifier')  NOT NULL NOT SORTABLE,
+        modifieddate = 'ModifiedDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  NOT NULL SORTABLE
+    )
+    CONSTRAINT 'PK_ProductCategory_ProductCategoryID' PRIMARY KEY ( 'ProductCategoryID' )
+    CONSTRAINT 'FK_ProductCategory_ProductCategory_ParentProductCategoryID_ProductCategoryID' FOREIGN KEY ( 'ParentProductCategoryID' ) 
+    REFERENCES 'denodo-training-sql-db'.'SalesLT'.'ProductCategory'( 'ProductCategoryID' )  ON UPDATE NO ACTION  ON DELETE NO ACTION NOT DEFERRABLE 
+    INDEX 'PK_ProductCategory_ProductCategoryID' CLUSTER UNIQUE PRIMARY ( 'ProductCategoryID' )
+    INDEX 'AK_ProductCategory_Name' OTHER UNIQUE ( 'Name' )
+    INDEX 'AK_ProductCategory_rowguid' OTHER UNIQUE ( 'rowguid' );
+
+CREATE OR REPLACE TABLE bv_productcategory I18N us_pst (
+        productcategoryid:int (notnull, autoincrement, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        parentproductcategoryid:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        name:text (notnull, sourcetypeid = '-9', sourcetypesize = '50'),
+        rowguid:text (notnull, sourcetypeid = '1', sourcetypesize = '36'),
+        modifieddate:timestamp (notnull, sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23')
+    )
+    FOLDER = '/2-baseview'
+    CONSTRAINT 'PK_ProductCategory_ProductCategoryID' PRIMARY KEY ( 'productcategoryid' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_productcategory(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD productcategoryid (any) OPT ANY
+             ADD parentproductcategoryid (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD rowguid (any) OPT ANY
+             ADD modifieddate (any) OPT ANY
+        )
+        OUTPUTLIST (modifieddate, name, parentproductcategoryid, productcategoryid, rowguid
+        )
+        WRAPPER (jdbc bv_productcategory)
+    );
+
