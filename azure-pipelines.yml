@@ -29,6 +29,13 @@ jobs:
     displayName: 'Pull changes to master VDP'
 
   - script: |
+        REM Tests with Denodo Testing Tool
+        cd $(testingToolPath)/bin
+        REM execute Testing Tool
+        denodo-test.bat $(testingToolPath)/conf/$(testingToolConfig) $(testingToolPath)/conf/$(testingToolTest)
+    displayName: 'Tests with Denodo Testing Tool'
+
+  - script: |
         REM locate in Denodo folder
         cd $(denodoPath)
         REM execute export script
@@ -41,6 +48,12 @@ jobs:
     inputs:
         PathtoPublish: '$(pipelineTmpPath)\$(REVISION_NAME)'
         ArtifactName: 'VQL for Revision'
+        publishLocation: 'Container'
+    
+  - task: PublishBuildArtifacts@1
+    inputs:
+        PathtoPublish: '$(testingToolPath)/src/test/resources/CSVReporter.csv'
+        ArtifactName: 'Testing Tool CSV gerenated file'
         publishLocation: 'Container'
 
   - script: |
