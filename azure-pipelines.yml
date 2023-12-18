@@ -15,12 +15,11 @@ variables:
     pool: Denodo_cicd_agent_pool
     name: 'Denodo_cicd_agent'
 jobs:
-
 - job: AgentJob
-  pool: Denodo_cicd_agent_pool
+  pool: 
   name: 'Denodo_cicd_agent'
   steps:
-    - script: |
+  - script: |
         # Create VQL file with DVCSPULL command
         echo ${vqlFileName}
         echo DVCSPULL project2; > $(pipelineTmpPath)\$(vqlFileName)
