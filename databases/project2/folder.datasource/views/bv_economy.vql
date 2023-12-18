@@ -1,0 +1,32 @@
+﻿CREATE OR REPLACE WRAPPER DF bv_economy
+    FOLDER = '/datasource'
+    DATASOURCENAME=ds_economy
+    OUTPUTSCHEMA (
+        location_key = 'location_key' (OPT),
+        gdp_usd = 'gdp_usd' (OPT),
+        gdp_per_capita_usd = 'gdp_per_capita_usd' (OPT),
+        human_capital_index = 'human_capital_index' (OPT)
+    );
+
+CREATE OR REPLACE TABLE bv_economy I18N us_pst (
+        location_key:text,
+        gdp_usd:text,
+        gdp_per_capita_usd:text,
+        human_capital_index:text
+    )
+    FOLDER = '/datasource'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_economy(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD location_key (any) OPT ANY
+             ADD gdp_usd (any) OPT ANY
+             ADD gdp_per_capita_usd (any) OPT ANY
+             ADD human_capital_index (any) OPT ANY
+        )
+        OUTPUTLIST (gdp_per_capita_usd, gdp_usd, human_capital_index, location_key
+        )
+        WRAPPER (df bv_economy)
+    );
+
