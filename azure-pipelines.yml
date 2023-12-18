@@ -21,7 +21,6 @@ jobs:
   steps:
   - script: |
         # Create VQL file with DVCSPULL command
-        echo $(pipelineTmpPath)\$(vqlFileName)
         echo DVCSPULL project2; > $(pipelineTmpPath)\$(vqlFileName)
     displayName: 'Create DVCSPULL VQL File'
   - script: |
