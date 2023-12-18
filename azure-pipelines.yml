@@ -17,7 +17,7 @@ variables:
 jobs:
 
 - job: AgentJob
-    pool: Denodo_cicd_agent_pool
+    pool: 
     name: 'Denodo_cicd_agent'
     steps:
     - script: |
