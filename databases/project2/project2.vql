@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE DATABASE project2 'Project2_devA Database for Developer to develop code';
+
+ALTER DATABASE project2
+  CHARSET DEFAULT;
+
