@@ -50,7 +50,7 @@ jobs:
         cd $(pipelineTmpPath)
         python base64revision.py -s AZRCISVDWSOLM01 -p 10090 -v $(REVISION_NAME) -n revision_test_azure_devops -d rev_desc_test_azure_devops -e 55 -c deploy_test_azure_devops -u $(USERNAME) -a $(PASSWORD)
     displayName: 'Create revision with Denodo Rest Api'
-    - script: |
+  - script: |
         # Retry deletion of both temporary VQL file and REVISION_NAME file until they are deleted
         :retryVql
         del "%pipelineTmpPath%\%vqlFileName%" 2> NUL
