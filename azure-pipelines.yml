@@ -16,8 +16,8 @@ variables:
     name: 'Denodo_cicd_agent'
 jobs:
 - job: AgentJob
-  Pool: 'Denodo_cicd_agent_pool'
-  Agent: 'Denodo_cicd_agent'
+  pool: 'Denodo_cicd_agent_pool'
+  
   steps:
   - script: |
         # Create VQL file with DVCSPULL command
