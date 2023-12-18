@@ -19,10 +19,10 @@ jobs:
   pool: 'Denodo_cicd_agent_pool'
   
   steps:
-  - script: |
-        # Create VQL file with DVCSPULL command
-        echo $(pipelineTmpPath)\$(vqlFileName)
-        echo DVCSPULL project2; > $(pipelineTmpPath)\$(vqlFileName)
+ # - script: |
+ #       # Create VQL file with DVCSPULL command
+ #       echo $(pipelineTmpPath)\$(vqlFileName)
+ #      echo DVCSPULL project2; > $(pipelineTmpPath)\$(vqlFileName)
     #displayName: 'Create DVCSPULL VQL File'
   - script: |
         # Use import script to execute PULL
