@@ -39,7 +39,7 @@ jobs:
     env:
         PASSWORD: $(PASSWORD)
         REVISION: $(REVISION_NAME)
-    - task: PublishBuildArtifacts@1
+  - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(pipelineTmpPath)\$(REVISION_NAME)'
         ArtifactName: 'VQL for Revision'
