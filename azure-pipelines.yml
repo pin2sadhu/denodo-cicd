@@ -19,7 +19,7 @@ jobs:
 - job: AgentJob
   pool: Denodo_cicd_agent_pool
   name: 'Denodo_cicd_agent'
-    steps:
+  steps:
     - script: |
         # Create VQL file with DVCSPULL command
         echo ${vqlFileName}
