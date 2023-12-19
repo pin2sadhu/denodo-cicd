@@ -1,0 +1,8 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF ds_sample_superstore_data
+    FOLDER = '/1-datasource'
+    ROUTE LOCAL 'LocalConnection' '${databases.project2.folder.1-datasource.datasources.df.ds_sample_superstore_data.ROUTE.LOCAL.PATH}'
+    COLUMNDELIMITER = ','
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = TRUE;
+
