@@ -1,5 +1,5 @@
 ﻿CREATE OR REPLACE WRAPPER DF bv_sample_superstore_data
-    FOLDER = '/2-baseview'
+    FOLDER = '/1-datasource'
     DATASOURCENAME=ds_sample_superstore_data
     OUTPUTSCHEMA (
         returned = 'Returned' (OPT),
@@ -10,7 +10,7 @@ CREATE OR REPLACE TABLE bv_sample_superstore_data I18N us_pst (
         returned:text,
         orderid_0:text
     )
-    FOLDER = '/2-baseview'
+    FOLDER = '/1-datasource'
     CACHE OFF
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD bv_sample_superstore_data(
