@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE ASSOCIATION bv_productcategory_bv_product REFERENTIAL CONSTRAINT 
+FOLDER = '/1-datasource'
+    ENDPOINT bv_product bv_productcategory PRINCIPAL (0,1)
+    ENDPOINT bv_productcategory bv_product (0,*)
+    ADD MAPPING productcategoryid=productcategoryid;
+
