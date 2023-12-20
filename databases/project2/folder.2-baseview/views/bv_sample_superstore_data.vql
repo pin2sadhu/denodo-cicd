@@ -1,0 +1,26 @@
+﻿CREATE OR REPLACE WRAPPER DF bv_sample_superstore_data
+    FOLDER = '/2-baseview'
+    DATASOURCENAME=ds_sample_superstore_data
+    OUTPUTSCHEMA (
+        returned = 'Returned' (OPT),
+        orderid_0 = 'Order ID' (OPT)
+    );
+
+CREATE OR REPLACE TABLE bv_sample_superstore_data I18N us_pst (
+        returned:text,
+        orderid_0:text
+    )
+    FOLDER = '/2-baseview'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_sample_superstore_data(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD returned (any) OPT ANY
+             ADD orderid_0 (any) OPT ANY
+        )
+        OUTPUTLIST (orderid_0, returned
+        )
+        WRAPPER (df bv_sample_superstore_data)
+    );
+
