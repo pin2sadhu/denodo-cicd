@@ -1,5 +1,5 @@
 ﻿CREATE OR REPLACE ASSOCIATION "bv_productcategory_bv_productcategory_ParentProductCategoryID" REFERENTIAL CONSTRAINT 
-FOLDER = '/1-datasource'
+FOLDER = '/2-baseview'
     ENDPOINT "bv_productcategory_ParentProductCategoryID" bv_productcategory PRINCIPAL (0,1)
     ENDPOINT "bv_productcategory_ParentProductCategoryID_4749" bv_productcategory (0,*)
     ADD MAPPING productcategoryid=parentproductcategoryid;

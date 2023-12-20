@@ -1,4 +1,4 @@
-﻿/databases/project2/folder.1-datasource/1-datasource.vql
-/databases/project2/folder.2-baseview/2-baseview.vql
+﻿/databases/project2/folder.2-baseview/2-baseview.vql
+/databases/project2/folder.1-datasource/1-datasource.vql
 /databases/project2/folder.1-datasource/datasources/jdbc/ds_sql_server_azure.vql
 /databases/project2/folder.2-baseview/views/bv_productcategory.vql
