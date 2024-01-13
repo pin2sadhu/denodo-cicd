@@ -1,0 +1,85 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_product
+    FOLDER = '/2-baseview'
+    DATASOURCENAME=ds_sql_server_azure
+    CATALOGNAME='${databases.project2.folder.2-baseview.views.jdbc.bv_product.CATALOGNAME}' ESCAPE
+    SCHEMANAME='${databases.project2.folder.2-baseview.views.jdbc.bv_product.SCHEMANAME}' 
+    RELATIONNAME='Product' 
+    OUTPUTSCHEMA (
+        productid = 'ProductID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int identity')  NOT NULL SORTABLE IS_AUTOINCREMENT,
+        name = 'Name' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='-9', sourcetypename='Name')  NOT NULL NOT SORTABLE,
+        productnumber = 'ProductNumber' :'java.lang.String' (OPT) (sourcetypesize='25', sourcetypeid='-9', sourcetypename='nvarchar')  NOT NULL SORTABLE,
+        color = 'Color' :'java.lang.String' (OPT) (sourcetypesize='15', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        standardcost = 'StandardCost' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='4', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='3', sourcetypename='money')  NOT NULL NOT SORTABLE,
+        listprice = 'ListPrice' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='4', sourcetyperadix='10', sourcetypesize='19', sourcetypeid='3', sourcetypename='money')  NOT NULL NOT SORTABLE,
+        size = 'Size' :'java.lang.String' (OPT) (sourcetypesize='5', sourcetypeid='-9', sourcetypename='nvarchar')  ESCAPE SORTABLE,
+        weight = 'Weight' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='2', sourcetyperadix='10', sourcetypesize='8', sourcetypeid='3', sourcetypename='decimal')  SORTABLE,
+        productcategoryid = 'ProductCategoryID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        productmodelid = 'ProductModelID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  SORTABLE,
+        sellstartdate = 'SellStartDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  NOT NULL SORTABLE,
+        sellenddate = 'SellEndDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  SORTABLE,
+        discontinueddate = 'DiscontinuedDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  SORTABLE,
+        thumbnailphoto = 'ThumbNailPhoto' :'java.sql.Blob' (OPT) (sourcetypesize='2147483647', sourcetypeid='-3', sourcetypename='varbinary')  NOT SORTABLE,
+        thumbnailphotofilename = 'ThumbnailPhotoFileName' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='-9', sourcetypename='nvarchar')  SORTABLE,
+        rowguid = 'rowguid' :'java.lang.String' (OPT) (sourcetypesize='36', sourcetypeid='1', sourcetypename='uniqueidentifier')  NOT NULL NOT SORTABLE,
+        modifieddate = 'ModifiedDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  NOT NULL SORTABLE
+    )
+    CONSTRAINT 'PK_Product_ProductID' PRIMARY KEY ( 'ProductID' )
+    CONSTRAINT 'FK_Product_ProductCategory_ProductCategoryID' FOREIGN KEY ( 'ProductCategoryID' ) 
+    REFERENCES 'denodo-training-sql-db'.'SalesLT'.'ProductCategory'( 'ProductCategoryID' )  ON UPDATE NO ACTION  ON DELETE NO ACTION NOT DEFERRABLE 
+    CONSTRAINT 'FK_Product_ProductModel_ProductModelID' FOREIGN KEY ( 'ProductModelID' ) 
+    REFERENCES 'denodo-training-sql-db'.'SalesLT'.'ProductModel'( 'ProductModelID' )  ON UPDATE NO ACTION  ON DELETE NO ACTION NOT DEFERRABLE 
+    INDEX 'PK_Product_ProductID' CLUSTER UNIQUE PRIMARY ( 'ProductID' )
+    INDEX 'AK_Product_Name' OTHER UNIQUE ( 'Name' )
+    INDEX 'AK_Product_ProductNumber' OTHER UNIQUE ( 'ProductNumber' )
+    INDEX 'AK_Product_rowguid' OTHER UNIQUE ( 'rowguid' );
+
+CREATE OR REPLACE TABLE bv_product I18N us_pst (
+        productid:int (notnull, autoincrement, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        name:text (notnull, sourcetypeid = '-9', sourcetypesize = '50'),
+        productnumber:text (notnull, sourcetypeid = '-9', sourcetypesize = '25'),
+        color:text (sourcetypeid = '-9', sourcetypesize = '15'),
+        standardcost:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '4', sourcetypesize = '19'),
+        listprice:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '4', sourcetypesize = '19'),
+        size:text (sourcetypeid = '-9', sourcetypesize = '5'),
+        weight:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '2', sourcetypesize = '8'),
+        productcategoryid:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        productmodelid:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        sellstartdate:timestamp (notnull, sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
+        sellenddate:timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
+        discontinueddate:timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
+        thumbnailphoto:blob (sourcetypeid = '-3', sourcetypesize = '2147483647'),
+        thumbnailphotofilename:text (sourcetypeid = '-9', sourcetypesize = '50'),
+        rowguid:text (notnull, sourcetypeid = '1', sourcetypesize = '36'),
+        modifieddate:timestamp (notnull, sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23')
+    )
+    FOLDER = '/2-baseview'
+    CONSTRAINT 'PK_Product_ProductID' PRIMARY KEY ( 'productid' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_product(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD productid (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD productnumber (any) OPT ANY
+             ADD color (any) OPT ANY
+             ADD standardcost (any) OPT ANY
+             ADD listprice (any) OPT ANY
+             ADD size (any) OPT ANY
+             ADD weight (any) OPT ANY
+             ADD productcategoryid (any) OPT ANY
+             ADD productmodelid (any) OPT ANY
+             ADD sellstartdate (any) OPT ANY
+             ADD sellenddate (any) OPT ANY
+             ADD discontinueddate (any) OPT ANY
+             ADD thumbnailphotofilename (any) OPT ANY
+             ADD rowguid (any) OPT ANY
+             ADD modifieddate (any) OPT ANY
+             ADD thumbnailphoto NOS ZERO ()
+        )
+        OUTPUTLIST (color, discontinueddate, listprice, modifieddate, name, productcategoryid, productid, productmodelid, productnumber, rowguid, sellenddate, sellstartdate, size, standardcost, thumbnailphoto, thumbnailphotofilename, weight
+        )
+        WRAPPER (jdbc bv_product)
+    );
+
