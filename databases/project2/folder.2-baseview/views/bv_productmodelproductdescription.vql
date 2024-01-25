@@ -1,0 +1,47 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_productmodelproductdescription
+    FOLDER = '/2-baseview'
+    DATASOURCENAME=ds_sql_server_azure
+    CATALOGNAME='${databases.project2.folder.2-baseview.views.jdbc.bv_productmodelproductdescription.CATALOGNAME}' ESCAPE
+    SCHEMANAME='${databases.project2.folder.2-baseview.views.jdbc.bv_productmodelproductdescription.SCHEMANAME}' 
+    RELATIONNAME='ProductModelProductDescription' 
+    OUTPUTSCHEMA (
+        productmodelid = 'ProductModelID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  NOT NULL SORTABLE,
+        productdescriptionid = 'ProductDescriptionID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  NOT NULL SORTABLE,
+        culture = 'Culture' :'java.lang.String' (OPT) (sourcetypesize='6', sourcetypeid='-15', sourcetypename='nchar')  NOT NULL SORTABLE,
+        rowguid = 'rowguid' :'java.lang.String' (OPT) (sourcetypesize='36', sourcetypeid='1', sourcetypename='uniqueidentifier')  NOT NULL NOT SORTABLE,
+        modifieddate = 'ModifiedDate' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='3', sourcetypesize='23', sourcetypeid='93', sourcetypename='datetime')  NOT NULL SORTABLE
+    )
+    CONSTRAINT 'PK_ProductModelProductDescription_ProductModelID_ProductDescriptionID_Culture' PRIMARY KEY ( 'ProductModelID' , 'ProductDescriptionID' , 'Culture' )
+    CONSTRAINT 'FK_ProductModelProductDescription_ProductDescription_ProductDescriptionID' FOREIGN KEY ( 'ProductDescriptionID' ) 
+    REFERENCES 'denodo-training-sql-db'.'SalesLT'.'ProductDescription'( 'ProductDescriptionID' )  ON UPDATE NO ACTION  ON DELETE NO ACTION NOT DEFERRABLE 
+    CONSTRAINT 'FK_ProductModelProductDescription_ProductModel_ProductModelID' FOREIGN KEY ( 'ProductModelID' ) 
+    REFERENCES 'denodo-training-sql-db'.'SalesLT'.'ProductModel'( 'ProductModelID' )  ON UPDATE NO ACTION  ON DELETE NO ACTION NOT DEFERRABLE 
+    INDEX 'PK_ProductModelProductDescription_ProductModelID_ProductDescriptionID_Culture' CLUSTER UNIQUE PRIMARY ( 'ProductModelID' , 'ProductDescriptionID' , 'Culture' )
+    INDEX 'AK_ProductModelProductDescription_rowguid' OTHER UNIQUE ( 'rowguid' );
+
+CREATE OR REPLACE TABLE bv_productmodelproductdescription I18N us_pst (
+        productmodelid:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        productdescriptionid:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        culture:text (notnull, sourcetypeid = '-15', sourcetypesize = '6'),
+        rowguid:text (notnull, sourcetypeid = '1', sourcetypesize = '36'),
+        modifieddate:timestamp (notnull, sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23')
+    )
+    FOLDER = '/2-baseview'
+    CONSTRAINT 'PK_ProductModelProductDescription_ProductModelID_ProductDescriptionID_Culture' PRIMARY KEY ( 'productmodelid' , 'productdescriptionid' , 'culture' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_productmodelproductdescription(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD productmodelid (any) OPT ANY
+             ADD productdescriptionid (any) OPT ANY
+             ADD culture (any) OPT ANY
+             ADD rowguid (any) OPT ANY
+             ADD modifieddate (any) OPT ANY
+        )
+        OUTPUTLIST (culture, modifieddate, productdescriptionid, productmodelid, rowguid
+        )
+        WRAPPER (jdbc bv_productmodelproductdescription)
+    );
+
