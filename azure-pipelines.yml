@@ -60,7 +60,7 @@ jobs:
   - script: |
         REM Convert vql file of db to base64 and use Rest Api to create revision
         cd $(pipelineTmpPath)
-        python base64revision.py -s azrcisvdwsolm01.5abulew2224udhtehh2tm4esag.rx.internal.cloudapp.net -p 10090 -v $(REVISION_NAME) -n revision_test_azure_devops -d rev_desc_test_azure_devops -e 1 -c deploy_test_azure_devops -u $(USERNAME) -a $(PASSWORD)
+        python base64revision.py -s azrcisvdwsolm01.5abulew2224udhtehh2tm4esag.rx.internal.cloudapp.net -p 10090 -v $(REVISION_NAME) -n revision_test_azure_devops -d rev_desc_test_azure_devops -e 63 -c deploy_test_azure_devops -u $(USERNAME) -a $(PASSWORD)
     displayName: 'Create revision with Denodo REST API and Deploy revision'
   - script: |
         REM Retry deletion of both temporary VQL file and REVISION_NAME file until they are deleted
