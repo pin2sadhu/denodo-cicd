@@ -1,21 +1,33 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
+  branches:
+    include:
+    - main
 
-- main
+- name: pool
+  value: Denodo_cicd_agent_pool
+- name: name
+  value: 'Denodo_cicd_agent'
+stages:
+- stage: __default
+  jobs:
+  - job: AgentJob1
+    pool:
+      name: 'Denodo_cicd_agent_pool'
+      steps:
 
-pool: Denodo_cicd_agent_pool
-name: 'Denodo_cicd_agent'
-
-steps:
-    - task: ManualValidation@0
-    inputs:
+      - task: ManualValidation@0
+        inputs:
          notifyUsers:'pintu.sadhu@ltimindtree.com'
-
- steps:
+         
+  - job: AgentJob2
+    pool:
+      name: 'Denodo_cicd_agent_pool'
+    steps:
     - task: CmdLine@2
-      script: echo Hello, world!
+      displayName: 'Echo Output'
+      inputs:
+        script: |
+          REM Echo Output command
+          echo 'Hello WORLD'
+    
 
