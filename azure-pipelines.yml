@@ -19,9 +19,7 @@ stages:
         inputs:
          notifyUsers:'pintu.sadhu@ltimindtree.com'
          
-  - job: AgentJob2
-    pool:
-      name: 'Denodo_cicd_agent_pool'
+
     steps:
     - task: CmdLine@2
       displayName: 'Command Output'
