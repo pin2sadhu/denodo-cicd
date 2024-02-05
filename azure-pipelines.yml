@@ -11,6 +11,11 @@ pool: Denodo_cicd_agent_pool
 name: 'Denodo_cicd_agent'
 
 steps:
+    - task: ManualValidation@0
+        inputs:
+         notifyUsers:'pranav.khandelwal1@ltimindtree.com'
 
-- script: echo Hello, world!
+ steps:
+    - task: CmdLine@2
+      script: echo Hello, world!
 
