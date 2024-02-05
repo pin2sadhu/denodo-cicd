@@ -10,7 +10,7 @@ variables:
 stages:
 - stage: __default
   jobs:
-  - job: AgentJob1
+  - job: AgentJob
     pool:
       name: 'Denodo_cicd_agent_pool'
       steps:
@@ -19,7 +19,7 @@ stages:
         inputs:
          notifyUsers:'pintu.sadhu@ltimindtree.com'
          
-  - job: AgentJob2
+  - job: AgentJob
     pool:
       name: 'Denodo_cicd_agent_pool'
     steps:
