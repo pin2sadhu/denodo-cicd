@@ -12,8 +12,8 @@ name: 'Denodo_cicd_agent'
 
 steps:
     - task: ManualValidation@0
-        inputs:
-         notifyUsers:'pranav.khandelwal1@ltimindtree.com'
+    inputs:
+         notifyUsers:'pintu.sadhu@ltimindtree.com'
 
  steps:
     - task: CmdLine@2
