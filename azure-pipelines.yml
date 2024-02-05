@@ -2,7 +2,7 @@ trigger:
   branches:
     include:
     - main
-
+variables:
 - name: pool
   value: Denodo_cicd_agent_pool
 - name: name
@@ -24,10 +24,10 @@ stages:
       name: 'Denodo_cicd_agent_pool'
     steps:
     - task: CmdLine@2
-      displayName: 'Echo Output'
+      displayName: 'Command Output'
       inputs:
         script: |
-          REM Echo Output command
-          echo 'Hello WORLD'
+          REM Print command
+          echo Hello World
     
 
