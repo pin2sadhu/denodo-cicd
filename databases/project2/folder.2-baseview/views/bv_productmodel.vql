@@ -1,9 +1,9 @@
 ﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
 CREATE OR REPLACE WRAPPER JDBC bv_productmodel
-    FOLDER = '/1-datasource'
+    FOLDER = '/2-baseview'
     DATASOURCENAME=ds_sql_server_azure
-    CATALOGNAME='${databases.project2.folder.1-datasource.views.jdbc.bv_productmodel.CATALOGNAME}' ESCAPE
-    SCHEMANAME='${databases.project2.folder.1-datasource.views.jdbc.bv_productmodel.SCHEMANAME}' 
+    CATALOGNAME='${databases.project2.folder.2-baseview.views.jdbc.bv_productmodel.CATALOGNAME}' ESCAPE
+    SCHEMANAME='${databases.project2.folder.2-baseview.views.jdbc.bv_productmodel.SCHEMANAME}' 
     RELATIONNAME='ProductModel' 
     OUTPUTSCHEMA (
         productmodelid = 'ProductModelID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int identity')  NOT NULL SORTABLE IS_AUTOINCREMENT,
@@ -24,7 +24,7 @@ CREATE OR REPLACE TABLE bv_productmodel I18N us_pst (
         rowguid:text (notnull, sourcetypeid = '1', sourcetypesize = '36'),
         modifieddate:timestamp (notnull, sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23')
     )
-    FOLDER = '/1-datasource'
+    FOLDER = '/2-baseview'
     CONSTRAINT 'PK_ProductModel_ProductModelID' PRIMARY KEY ( 'productmodelid' )
     CACHE OFF
     TIMETOLIVEINCACHE DEFAULT
